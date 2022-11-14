@@ -2,6 +2,12 @@ $(function () {
   let dashboardData = {};
   let chart = null;
 
+  let todayStatElement = $("#todaystats");
+  let lastWeekElement = $("#lastweek");
+  let lastMonthElement = $("#lastmonth");
+
+  let revenueTypeText = $("#typeText");
+
   //   fetch dashboard data
   const handleFetch = async () => {
     let data = await appService.getRequest("/dashboard");
@@ -10,6 +16,7 @@ $(function () {
       dashboardData = data.dashboard;
       handleChartData(data.dashboard, (type = "day"));
       handleRenderTable(dashboardData?.bestsellers);
+      handleDashBoardStats(dashboardData);
     }
   };
 
@@ -21,14 +28,36 @@ $(function () {
       let switchStatus = $(this).is(":checked");
       if (switchStatus) {
         handleSwitchDataType("year");
+        revenueTypeText.text("(Last 12 Months)");
       }
     } else {
       handleSwitchDataType("day");
+      revenueTypeText.text("(Last 7 Days)");
     }
   });
   const handleSwitchDataType = (type) => {
     chart.destroy();
     handleChartData(dashboardData, type);
+  };
+
+  //   set dashboard stats
+
+  const handleDashBoardStats = (data) => {
+    let weeklyData = Object.values(data.sales_over_time_week);
+    let yearlyData = Object.values(data.sales_over_time_year);
+    let today = weeklyData[0];
+    let lastWeek = weeklyData[weeklyData.length - 1];
+    let lastmonth = yearlyData[1];
+
+    let todayRecord = `$${today?.total} / ${today?.orders} orders`;
+    let lastWeekRecord = `$${lastWeek?.total} / ${lastWeek?.orders} orders`;
+    let lastMonthRecord = `$${lastmonth?.total} / ${lastmonth?.orders} orders`;
+
+    todayStatElement.text(todayRecord);
+    lastWeekElement.text(lastWeekRecord);
+    lastMonthElement.text(lastMonthRecord);
+
+    // let today = data[sales_over_time_week];
   };
 
   //   setUp Charts
@@ -111,6 +140,7 @@ $(function () {
           title: "Revenue",
           field: "revenue",
         },
+        //   ¬
       ],
       layout: "fitColumns",
       responsiveLayout: true,

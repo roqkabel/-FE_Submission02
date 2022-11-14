@@ -67,23 +67,25 @@
         <div class="stat-cards">
           <div class="stat-cards-item">
             <div class="title">Today</div>
-            <div class="figures">$1456/ 9 orders</div>
+            <div class="figures" id="todaystats">loading...</div>
           </div>
 
           <div class="stat-cards-item">
             <div class="title">Last Week</div>
-            <div class="figures">$34k/ 120 orders</div>
+            <div class="figures" id="lastweek">loading...</div>
           </div>
 
           <div class="stat-cards-item">
             <div class="title">Last Month</div>
-            <div class="figures">$95/ 876 orders</div>
+            <div class="figures" id="lastmonth">loading...</div>
           </div>
         </div>
 
         <div class="revenue-graph">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="title">Revenue (Last 7 days)</div>
+            <div class="title">
+              Revenue <span id="typeText">(Last 7 Days )</span>
+            </div>
             <div class="form-check form-switch">
               <input
                 class="form-check-input"
