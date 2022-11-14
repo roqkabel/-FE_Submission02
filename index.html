@@ -13,7 +13,31 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"
+    />
+    <!-- Default theme
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"
+    /> -->
+
+    <!-- Bootstrap theme -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"
+    />
+
+    <script src="/js/app.js"></script>
+    <script src="/js/login.js"></script>
   </head>
   <body>
     <div class="login-container">
@@ -32,12 +56,17 @@
         </div>
 
         <div class="form">
-          <form>
+          <form id="loginForm">
             <div class="field">
-              <input class="input" placeholder="username" />
+              <input name="username" class="input" placeholder="username" />
             </div>
             <div class="field">
-              <input class="input" placeholder="password" type="password" />
+              <input
+                name="password"
+                class="input"
+                placeholder="password"
+                type="password"
+              />
             </div>
             <div class="field btn-container">
               <button class="btn" type="submit">Login</button>
