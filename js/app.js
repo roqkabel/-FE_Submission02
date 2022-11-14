@@ -79,6 +79,10 @@ class AppService {
     return localStorage.getItem(this.refreshTokenIdName);
   }
 
+  isLoggedIn() {
+    let value = localStorage.getItem(this.tokenIdName);
+    return value ? true : false;
+  }
   removeToken() {
     localStorage.removeItem(this.tokenIdName);
     localStorage.removeItem(this.refreshTokenIdName);

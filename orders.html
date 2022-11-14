@@ -7,6 +7,7 @@
     <title>Freddys Orders</title>
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/loader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,6 +24,10 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link
+      href="https://unpkg.com/tabulator-tables@5.4.2/dist/css/tabulator_bootstrap5.min.css"
+      rel="stylesheet"
+    />
 
     <script
       type="text/javascript"
@@ -31,9 +36,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-    <script src="/js/main.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.6/dayjs.min.js"
+      integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/js/app.js"></script>
     <script src="/js/orders.js"></script>
+    <script src="/js/main.js"></script>
   </head>
   <body>
     <div class="db-layout">
@@ -44,22 +55,85 @@
         <div class="menu">
           <ul>
             <li>
-              <a href="/dashboard.html">
+              <a class="text-dark" href="/dashboard.html">
                 <div>Dashboard</div>
               </a>
             </li>
             <li>
-              <a href="/orders.html"><div>Orders</div></a>
+              <a class="text-dark" href="/orders.html"><div>Orders</div></a>
             </li>
             <li>
-              <a href="/logout"><div>Logout</div></a>
+              <a class="logout text-dark" href="#0"><div>Logout</div></a>
             </li>
           </ul>
         </div>
       </section>
       <section class="main-content">
-        <h1 class="title">Orders</h1>
+        <div class="px-3 mb-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <h1 class="title">Orders</h1>
+            <form id="search-form" class="d-flex">
+              <input
+                id="search-input"
+                class="form-control"
+                placeholder="Search here"
+              />
+              <button id="search-btn" class="btn mx-2 btn-secondary">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <nav class="my-4" aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item">
+                <a id="previous" class="page-link previous" href="#"
+                  >Previous</a
+                >
+              </li>
+              <li class="page-item">
+                <a id="currentpage" class="page-link currentpage" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a id="next" class="page-link next" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+          <div>
+            <span class="pageStatus"></span>
+          </div>
+        </div>
         <div id="orders-table"></div>
+        <div class="text-center">
+          <div class="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <nav class="my-4" aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a id="previous" class="page-link previous" href="#">Previous</a>
+            </li>
+            <li class="page-item">
+              <a id="currentpage" class="page-link currentpage" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a id="next" class="page-link next" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
       </section>
     </div>
 
