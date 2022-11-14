@@ -74,7 +74,7 @@ $(function () {
     } else {
       prevButton.removeClass("disabled");
       nextButton.removeClass("disabled");
-      
+
       // toggle Disabled previous button
       if (currentPage == 1) {
         prevButton.addClass("disabled");
@@ -91,7 +91,7 @@ $(function () {
     }
 
     // set page status
-    pageStatus.text(`${currentPage}/ ${totalPage}`);
+    pageStatus.text(`Page ${currentPage} of ${totalPage}`);
   };
 
   nextButton.click(() => {
@@ -150,11 +150,6 @@ $(function () {
       ],
       pagination: false,
       layout: "fitColumns",
-      // paginationMode: "remote", //enable remote pagination
-      // ajaxURL: appService.domainUrl + "/orders", //set url for ajax request
-      // paginationSize: 10,
-      // paginationInitialPage: 1,
-      // height: "100%",
       width: "100%",
       paginationCounter: "rows",
     });
