@@ -17,17 +17,17 @@ class AppService {
       .catch((err) => this.handleError(err));
   }
 
-  getRequest() {
-    axios
+  getRequest(path) {
+    return axios
       .get(this.domainUrl + path, {
         headers: {
-          Authorization: "Bearer " + this.getToken,
+          Authorization: "Bearer " + this.getToken(),
         },
       })
       .then((res) => {
-        console.log(res.data);
+        return res.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => this.handleRequestError(err));
   }
 
   handleError(err) {
@@ -37,8 +37,34 @@ class AppService {
     alertify.error("Invalid login credentials.");
   }
 
+  handleRequestError(err) {
+    if (err.response?.status == 401) {
+      this.requestRefreshToken();
+    }
+  }
+
+  requestRefreshToken() {
+    axios
+      .post(
+        this.domainUrl + "/refresh",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + this.getRefreshToken(),
+          },
+        }
+      )
+      .then((res) => {
+        let token = res.data;
+        localStorage.setItem(this.tokenIdName, token.access_token);
+        location.reload();
+      })
+      .catch((err) => this.handleError(err));
+  }
+
   logoutUser() {
     this.removeToken();
+    window.location.assign("/index.html");
   }
 
   setToken(token) {
@@ -48,6 +74,9 @@ class AppService {
   }
   getToken() {
     return localStorage.getItem(this.tokenIdName);
+  }
+  getRefreshToken() {
+    return localStorage.getItem(this.refreshTokenIdName);
   }
 
   removeToken() {

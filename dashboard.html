@@ -33,6 +33,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="/js/main.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/dashboard.js"></script>
   </head>
   <body>
     <div class="db-layout">
@@ -83,7 +85,7 @@
                 class="form-check-input"
                 type="checkbox"
                 role="switch"
-                id="flexSwitchCheckDefault"
+                id="switcher"
               />
             </div>
           </div>
@@ -93,26 +95,7 @@
         <div class="bestsellers-table">
           <div class="title mb-3">Best Sellers</div>
           <div class="table">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">#Units Sold</th>
-                  <th scope="col">Revenue</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Item 1</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <div id="bestseller-table"></div>
           </div>
         </div>
       </section>
